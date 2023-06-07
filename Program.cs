@@ -142,150 +142,240 @@ internal class DbInitializer
         };
         dbContext.CurriculumEventTypes.AddRange(eventTypes);
         dbContext.SaveChanges();
-
-        //Add CurriculumEventTemplates
-        var eventTemplates = new CurriculumEventTemplate[]
+        var curriculumEvents = new CurriculumEvent[]
         {
-                //ACMT Lectures
-                new CurriculumEventTemplate { Name = "Swedish practice", Date = new DateTime(2023, 09, 1, 08, 00, 00), Description = "Include face and abdomen",
-                    CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(0), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(0), },
-                new CurriculumEventTemplate { Name = "Lower Appendicular", Date = new DateTime(2023, 09, 8, 08, 00, 00), Description = "Review Lower appendicular skeleton bones, joints & bony landmarks",
-                    CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(0), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(0), },
-                new CurriculumEventTemplate { Name = "Intro Sciatica", Date = new DateTime(2023, 09, 15, 08, 00, 00), Description = "Review Leg DT, Handout theory, Review workbook",
-                    CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(0), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(0), },
-                //ACMT Quiz
-                new CurriculumEventTemplate { Name = "Quiz", Date = new DateTime(2023, 09, 22, 12, 00, 00), Description = "Can you do Massage?",
-                    CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(1), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(1), },
-                //ACMT Midterm
-                new CurriculumEventTemplate { Name = "Midterm", Date = new DateTime(2023, 09, 25, 12, 00, 00), Description = "Can you do Massage? Round 2",
-                    CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(2), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(2), },
-                //ACMT Practicum
-                new CurriculumEventTemplate { Name = "Practicum", Date = new DateTime(2023, 09, 30, 12, 00, 00), Description = "Can you do Massage for Real?",
-                    CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(3), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(4), },
+            //ACMT Lectures
+            new CurriculumEvent { Name = "Swedish practice", Description = "Include face and abdomen",
+                    CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(0), 
+                    CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(0), },
+            
+            new CurriculumEvent { Name = "Lower Appendicular", 
+                Description = "Review Lower appendicular skeleton bones, joints & bony landmarks",
+                   CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(0), 
+                CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(0), },
+            
+            new CurriculumEvent { Name = "Intro Sciatica", Description = "Review Leg DT, Handout theory, Review workbook",
+                CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(0), 
+                CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(0), },
+            
+            //ACMT Quiz
+            new CurriculumEvent { Name = "Quiz", Description = "Can you do Massage?",
+                CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(1), 
+                CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(1), },
 
-                //BA Lectures
-                new CurriculumEventTemplate { Name = "Lecture 1", Date = new DateTime(2023, 09, 2, 10, 00, 00), Description = "Intro to Business Admin",
-                    CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(4), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(0), },
-                new CurriculumEventTemplate { Name = "Lecture 2", Date = new DateTime(2023, 09, 9, 10, 00, 00), Description = "Intro to Customer Service",
-                    CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(4), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(0), },
-                new CurriculumEventTemplate { Name = "Lecture 3", Date = new DateTime(2023, 09, 16, 10, 00, 00), Description = "Intro to Patience",
-                    CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(4), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(0), },
-                //BA Quiz
-                new CurriculumEventTemplate { Name = "Quiz", Date = new DateTime(2023, 09, 18, 13, 00, 00), Description = "Can you Administrate?",
-                    CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(5), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(1), },
-                //BA Midterm
-                new CurriculumEventTemplate { Name = "Midterm", Date = new DateTime(2023, 09, 13, 08, 00, 00), Description = "Can you Administrate? Round 2?",
-                    CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(6), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(2), },
-                //BA Final
-                new CurriculumEventTemplate { Name = "Final", Date = new DateTime(2023, 09, 28, 13, 00, 00), Description = "Can you Administrate? Round 3?",
-                    CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(7), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(3), },
+            //ACMT Midterm
+            new CurriculumEvent { Name = "Midterm", Description = "Can you do Massage? Round 2",
+                CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(2), 
+                CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(2), },
+
+            //ACMT 2309MB_MT Practicum
+            new CurriculumEvent { Name = "Practicum", Description = "Can you do Massage for Real?",
+                CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(3), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(4), },
+
+            //BA Lectures
+            new CurriculumEvent { Name = "Lecture 1", Description = "Intro to Business Admin",
+                CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(4), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(0), },
+
+            new CurriculumEvent { Name = "Lecture 2", Description = "Intro to Customer Service",
+                CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(4), 
+                CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(0), },
+
+            new CurriculumEvent { Name = "Lecture 3", Description = "Intro to Patience",
+                CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(4), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(0), },
+
+            //BA Quiz
+            new CurriculumEvent { Name = "Quiz", Description = "Can you Administrate?",
+                CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(5), 
+                CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(1), },
+
+            //BA Midterm
+            new CurriculumEvent { Name = "Midterm", Description = "Can you Administrate? Round 2?",
+                CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(6), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(2), },
+
+            //BA Final
+            new CurriculumEvent { Name = "Final", Description = "Can you Administrate? Round 3?",
+                CurriculumSection = dbContext.CurriculumsModules.ToList().ElementAt(7), CurriculumEventType = dbContext.CurriculumEventTypes.ToList().ElementAt(3), },
         };
-        dbContext.CurriculumEventTemplates.AddRange(eventTemplates);
+        dbContext.CurriculumEvents.AddRange(curriculumEvents);
+        dbContext.SaveChanges();
+        //Add CurriculumEventTemplates
+        var cohortEventTemplates = new CohortEventTemplate[]
+        {
+                //ACMT 2309MB_MT Lectures
+                new CohortEventTemplate { Name = "Swedish practice", Date = new DateTime(2023, 09, 1, 08, 00, 00), Description = "Include face and abdomen",
+                    Cohort = "2309MB_MT", CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(0), },
+                new CohortEventTemplate { Name = "Lower Appendicular", Date = new DateTime(2023, 09, 8, 08, 00, 00), Description = "Review Lower appendicular skeleton bones, joints & bony landmarks",
+                    Cohort = "2309MB_MT",CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(1), },
+                new CohortEventTemplate { Name = "Intro Sciatica", Date = new DateTime(2023, 09, 15, 08, 00, 00), Description = "Review Leg DT, Handout theory, Review workbook",
+                    Cohort = "2309MB_MT",CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(2), },
+                //ACMT 2309MB_MT Quiz
+                new CohortEventTemplate { Name = "Quiz", Date = new DateTime(2023, 09, 22, 12, 00, 00), Description = "Can you do Massage?",
+                    Cohort = "2309MB_MT",CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(3), },
+                //ACMT 2309MB_MT Midterm
+                new CohortEventTemplate { Name = "Midterm", Date = new DateTime(2023, 09, 25, 12, 00, 00), Description = "Can you do Massage? Round 2",
+                    Cohort = "2309MB_MT",CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(4), },
+                //ACMT 2309MB_MT Practicum
+                new CohortEventTemplate { Name = "Practicum", Date = new DateTime(2023, 09, 30, 12, 00, 00), Description = "Can you do Massage for Real?",
+                    Cohort = "2309MB_MT",CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(5), },
+
+                //BA 2309BD_BA Lectures
+                new CohortEventTemplate { Name = "Lecture 1", Date = new DateTime(2023, 09, 2, 10, 00, 00), Description = "Intro to Business Admin",
+                    Cohort = "2309BD_BA", CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(6), },
+                new CohortEventTemplate { Name = "Lecture 2", Date = new DateTime(2023, 09, 9, 10, 00, 00), Description = "Intro to Customer Service",
+                    Cohort = "2309BD_BA", CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(7), },
+                new CohortEventTemplate { Name = "Lecture 3", Date = new DateTime(2023, 09, 16, 10, 00, 00), Description = "Intro to Patience",
+                    Cohort = "2309BD_BA", CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(8), },
+                //BA 2309BD_BA Quiz
+                new CohortEventTemplate { Name = "Quiz", Date = new DateTime(2023, 09, 18, 13, 00, 00), Description = "Can you Administrate?",
+                    Cohort = "2309BD_BA", CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(9), },
+                //BA 2309BD_BA Midterm
+                new CohortEventTemplate { Name = "Midterm", Date = new DateTime(2023, 09, 13, 08, 00, 00), Description = "Can you Administrate? Round 2?",
+                    Cohort = "2309BD_BA", CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(10), },
+                //BA 2309BD_BA Final
+                new CohortEventTemplate { Name = "Final", Date = new DateTime(2023, 09, 28, 13, 00, 00), Description = "Can you Administrate? Round 3?",
+                   Cohort = "2309BD_BA", CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(11), },
+
+
+                //ACMT 2309BD_MT Lectures
+                new CohortEventTemplate { Name = "Swedish practice", Date = new DateTime(2023, 09, 1, 08, 00, 00), Description = "Include face and abdomen",
+                    Cohort = "2309BD_MT", CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(0), },
+                new CohortEventTemplate { Name = "Lower Appendicular", Date = new DateTime(2023, 09, 8, 08, 00, 00), Description = "Review Lower appendicular skeleton bones, joints & bony landmarks",
+                    Cohort = "2309BD_MT",CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(1), },
+                new CohortEventTemplate { Name = "Intro Sciatica", Date = new DateTime(2023, 09, 15, 08, 00, 00), Description = "Review Leg DT, Handout theory, Review workbook",
+                    Cohort = "2309BD_MT",CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(2), },
+                //ACMT 2309BD_MT Quiz
+                new CohortEventTemplate { Name = "Quiz", Date = new DateTime(2023, 09, 22, 12, 00, 00), Description = "Can you do Massage?",
+                    Cohort = "2309BD_MT",CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(3), },
+                //ACMT 2309BD_MT Midterm
+                new CohortEventTemplate { Name = "Midterm", Date = new DateTime(2023, 09, 25, 12, 00, 00), Description = "Can you do Massage? Round 2",
+                    Cohort = "2309BD_MT",CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(4), },
+                //ACMT 2309BD_MT Practicum
+                new CohortEventTemplate { Name = "Practicum", Date = new DateTime(2023, 09, 30, 12, 00, 00), Description = "Can you do Massage for Real?",
+                    Cohort = "2309BD_MT",CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(5), },
+
+                //BA 2309MB_BA Lectures
+                new CohortEventTemplate { Name = "Lecture 1", Date = new DateTime(2023, 09, 2, 10, 00, 00), Description = "Intro to Business Admin",
+                    Cohort = "2309MB_BA", CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(6), },
+                new CohortEventTemplate { Name = "Lecture 2", Date = new DateTime(2023, 09, 9, 10, 00, 00), Description = "Intro to Customer Service",
+                    Cohort = "2309MB_BA", CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(7), },
+                new CohortEventTemplate { Name = "Lecture 3", Date = new DateTime(2023, 09, 16, 10, 00, 00), Description = "Intro to Patience",
+                    Cohort = "2309MB_BA", CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(8), },
+                //BA Quiz
+                new CohortEventTemplate { Name = "Quiz", Date = new DateTime(2023, 09, 18, 13, 00, 00), Description = "Can you Administrate?",
+                    Cohort = "2309MB_BA", CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(9), },
+                //BA Midterm
+                new CohortEventTemplate { Name = "Midterm", Date = new DateTime(2023, 09, 13, 08, 00, 00), Description = "Can you Administrate? Round 2?",
+                    Cohort = "2309MB_BA", CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(10), },
+                //BA Final
+                new CohortEventTemplate { Name = "Final", Date = new DateTime(2023, 09, 28, 13, 00, 00), Description = "Can you Administrate? Round 3?",
+                   Cohort = "2309MB_BA", CurriculumEvent = dbContext.CurriculumEvents.ToList().ElementAt(11), },
+        };
+        dbContext.CohortEventTemplates.AddRange(cohortEventTemplates);
         dbContext.SaveChanges();
 
         //Populate Student Events
         var studentEvents = new StudentEvent[]
         {   
             //ACMT Student 1, Lecture 1
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(0),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(0).Date, StudentFirstName = "John",
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(0),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(0).Date, StudentFirstName = "John",
                 StudentLastName = "Smith", Cohort = "2309MB_MT", Active = true, },
             //ACMT Student 1, Lecture 2
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(1),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(1).Date, StudentFirstName = "John",
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(1),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(1).Date, StudentFirstName = "John",
                 StudentLastName = "Smith", Cohort = "2309MB_MT", Active = true },
             //ACMT Student 1, Lecture 3
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(2),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(2).Date, StudentFirstName = "John",
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(2),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(2).Date, StudentFirstName = "John",
                 StudentLastName = "Smith", Cohort = "2309MB_MT", Active = true },
             //ACMT Student 1, Quiz
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(3),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(3).Date, StudentFirstName = "John",
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(3),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(3).Date, StudentFirstName = "John",
                 StudentLastName = "Smith", Cohort = "2309MB_MT", Active = true },
             //ACMT Student 1, Midterm
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(4),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(4).Date, StudentFirstName = "John",
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(4),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(4).Date, StudentFirstName = "John",
                 StudentLastName = "Smith", Cohort = "2309MB_MT", Active = true },
             //ACMT Student 1, Practicum
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(5),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(5).Date, StudentFirstName = "John",
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(5),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(5).Date, StudentFirstName = "John",
                 StudentLastName = "Smith", Cohort = "2309MB_MT", Active = true },
 
 
             //ACMT Student 2, Lecture 1
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(0),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(0).Date.AddDays(2), StudentFirstName = "John",
-                StudentLastName = "Smith", Cohort = "2309BD_MT", Active = true, },
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(0),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(0).Date.AddDays(-2), StudentFirstName = "Jilly",
+                StudentLastName = "Boal", Cohort = "2309BD_MT", Active = true, },
             //ACMT Student 2, Lecture 2
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(1),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(1).Date.AddDays(2), StudentFirstName = "John",
-                StudentLastName = "Smith", Cohort = "2309BD_MT", Active = true },
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(1),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(1).Date.AddDays(-2), StudentFirstName = "Jilly",
+                StudentLastName = "Boal", Cohort = "2309BD_MT", Active = true },
             //ACMT Student 2, Lecture 3
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(2),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(2).Date.AddDays(2), StudentFirstName = "John",
-                StudentLastName = "Smith", Cohort = "2309BD_MT", Active = true },
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(2),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(2).Date.AddDays(-2), StudentFirstName = "Jilly",
+                StudentLastName = "Boal", Cohort = "2309BD_MT", Active = true },
             //ACMT Student 2, Quiz
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(3),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(3).Date.AddDays(2), StudentFirstName = "John",
-                StudentLastName = "Smith", Cohort = "2309BD_MT", Active = true },
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(3),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(3).Date.AddDays(-2), StudentFirstName = "Jilly",
+                StudentLastName = "Boal", Cohort = "2309BD_MT", Active = true },
             //ACMT Student 2, Midterm
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(4),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(4).Date.AddDays(2), StudentFirstName = "John",
-                StudentLastName = "Smith", Cohort = "2309BD_MT", Active = true },
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(4),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(4).Date.AddDays(-2), StudentFirstName = "Jilly",
+                StudentLastName = "Boal", Cohort = "2309BD_MT", Active = true },
             //ACMT Student 2, Practicum
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(5),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(5).Date.AddDays(2), StudentFirstName = "John",
-                StudentLastName = "Smith", Cohort = "2309BD_MT", Active = true },
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(5),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(5).Date.AddDays(-2), StudentFirstName = "Jilly",
+                StudentLastName = "Boal", Cohort = "2309BD_MT", Active = true },
 
             //BA Student 1, Lecture 1
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(6),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(6).Date, StudentFirstName = "Jane",
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(6),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(6).Date, StudentFirstName = "Jane",
                 StudentLastName = "Doe", Cohort = "2309BD_BA", Active = true },
             //BA Student 1, Lecture 2
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(7),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(7).Date, StudentFirstName = "Jane",
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(7),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(7).Date, StudentFirstName = "Jane",
                 StudentLastName = "Doe", Cohort = "2309BD_BA", Active = true },
             //BA Student 1, Lecture 3
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(8),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(8).Date, StudentFirstName = "Jane",
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(8),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(8).Date, StudentFirstName = "Jane",
                 StudentLastName = "Doe", Cohort = "2309BD_BA", Active = true },
             //BA Student 1, Quiz 1
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(9),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(9).Date, StudentFirstName = "Jane",
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(9),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(9).Date, StudentFirstName = "Jane",
                 StudentLastName = "Doe", Cohort = "2309BD_BA", Active = true },
             //BA Student 1, Midterm
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(10),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(10).Date, StudentFirstName = "Jane",
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(10),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(10).Date, StudentFirstName = "Jane",
                 StudentLastName = "Doe", Cohort = "2309BD_BA", Active = true },
             //BA Student 1, Final
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(11),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(11).Date, StudentFirstName = "Jane",
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(11),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(11).Date, StudentFirstName = "Jane",
                 StudentLastName = "Doe", Cohort = "2309BD_BA", Active = true },
 
             //BA Student 2, Lecture 1
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(6),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(6).Date.AddDays(2), StudentFirstName = "Jane",
-                StudentLastName = "Doe", Cohort = "2309MB_BA", Active = true },
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(6),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(6).Date.AddDays(-2), StudentFirstName = "Billy",
+                StudentLastName = "Joel", Cohort = "2309MB_BA", Active = true },
             //BA Student 2, Lecture 2
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(7),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(7).Date.AddDays(2), StudentFirstName = "Jane",
-                StudentLastName = "Doe", Cohort = "2309MB_BA", Active = true },
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(7),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(7).Date.AddDays(-2), StudentFirstName = "Billy",
+                StudentLastName = "Joel", Cohort = "2309MB_BA", Active = true },
             //BA Student 2, Lecture 3
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(8),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(8).Date.AddDays(2), StudentFirstName = "Jane",
-                StudentLastName = "Doe", Cohort = "2309MB_BA", Active = true },
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(8),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(8).Date.AddDays(-2), StudentFirstName = "Billy",
+                StudentLastName = "Joel", Cohort = "2309MB_BA", Active = true },
             //BA Student 2, Quiz 1
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(9),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(9).Date.AddDays(2), StudentFirstName = "Jane",
-                StudentLastName = "Doe", Cohort = "2309MB_BA", Active = true },
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(9),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(9).Date.AddDays(-2), StudentFirstName = "Billy",
+                StudentLastName = "Joel", Cohort = "2309MB_BA", Active = true },
             //BA Student 2, Midterm
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(10),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(10).Date.AddDays(2), StudentFirstName = "Jane",
-                StudentLastName = "Doe", Cohort = "2309MB_BA", Active = true },
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(10),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(10).Date.AddDays(-2), StudentFirstName = "Billy",
+                StudentLastName = "Joel", Cohort = "2309MB_BA", Active = true },
             //BA Student 2, Final
-            new StudentEvent { CurriculumEventTemplate = dbContext.CurriculumEventTemplates.ToList().ElementAt(11),
-                EventDate = dbContext.CurriculumEventTemplates.ToList().ElementAt(11).Date.AddDays(2), StudentFirstName = "Jane",
-                StudentLastName = "Doe", Cohort = "2309MB_BA", Active = true },
+            new StudentEvent { CurriculumEventTemplate = dbContext.CohortEventTemplates.ToList().ElementAt(11),
+                EventDate = dbContext.CohortEventTemplates.ToList().ElementAt(11).Date.AddDays(-2), StudentFirstName = "Billy",
+                StudentLastName = "Joel", Cohort = "2309MB_BA", Active = true },
         };
         dbContext.StudentEvents.AddRange(studentEvents);
         dbContext.SaveChanges();

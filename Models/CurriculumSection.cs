@@ -11,6 +11,6 @@ namespace CurriculumTemplateDemo.Models
         [Required]
         public virtual Curriculum Curriculum { get; set; }
         public bool required { get; set; }
-        public virtual ICollection<CurriculumEventTemplate> CurriculumEventTemplates { get; set; }
+        public virtual ICollection<CurriculumEvent> CurriculumEvents { get; set; }
     }
 }

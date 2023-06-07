@@ -7,7 +7,7 @@ namespace CurriculumTemplateDemo.Models
         [Key]
         public int Id { get; set; }
         public DateTime EventDate { get; set; }
-        public virtual CurriculumEventTemplate CurriculumEventTemplate { get; set; }
+        public virtual CohortEventTemplate CurriculumEventTemplate { get; set; }
         public String StudentFirstName { get; set; }
         public String StudentLastName { get; set; }
         public String Cohort { get; set; }

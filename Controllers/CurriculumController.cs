@@ -18,8 +18,23 @@ namespace CurriculumTemplateDemo.Controllers
         [HttpGet("getCurriculums")]
         public ActionResult<Curriculum> GetCurriculums()
         {
-            Console.WriteLine("Requested");
-            return Ok(_context.Curriculums.Include(c=>c.Sections).ThenInclude(c=>c.CurriculumEventTemplates).ToList());
+            var curriculums = _context.Curriculums.Include(c=>c.Sections).ThenInclude(c=>c.CurriculumEvents).ToList();
+            var cohorts = _context.CohortEventTemplates.Include(c => c.CurriculumEvent.CurriculumSection.Curriculum).GroupBy(c => c.Cohort)
+                .Select(c=> new
+                {
+                    Cohort = c.Key,
+                    CurriculumId = c.First().CurriculumEvent.CurriculumSection.Curriculum.Id,
+                }); 
+            return Ok(new Tuple<dynamic, dynamic>(curriculums, cohorts));
+        }
+
+        [HttpGet("getCohorts")]
+        public ActionResult<dynamic> GetCohorts()
+        {
+            return Ok(_context.StudentEvents.GroupBy(c => c.Cohort).Select(c => new
+            {
+                name = c.First().Cohort
+            }));
         }
         [HttpGet("getCurriculumModules")]
         public ActionResult<dynamic> GetCurriculumModules()
@@ -36,18 +51,25 @@ namespace CurriculumTemplateDemo.Controllers
             
             return Ok(list);
         }
-        [HttpGet("getAllCurriculumEventTemplates")]
-        public ActionResult<dynamic> GetCurriculumEventTemplates()
+
+        [HttpGet("getAllCurriculumEvents")]
+        public ActionResult<dynamic> GetCurriculumEvents()
         {
-            return Ok(_context.CurriculumEventTemplates.Include(c=>c.CurriculumSection)
-                .Include(c=>c.CurriculumEventType).OrderBy(c=> c.Date).ToList());
+            return Ok(_context.CurriculumEvents.Include(c=>c.CurriculumSection).Include(c=>c.CurriculumEventType));
+        }
+
+        [HttpGet("getAllCohortEventTemplates")]
+        public ActionResult<dynamic> GetCohortEventTemplates()
+        {
+            return Ok(_context.CohortEventTemplates.Include(c=>c.CurriculumEvent)
+                .ThenInclude(c=>c.CurriculumEventType).OrderBy(c=> c.Date).ToList());
         }
 
         [HttpGet("getCurriculumEventTemplatesByProgram/{program}")]
         public ActionResult<dynamic> GetCurriculumEventTemplates(string program)
         {
-            return Ok(_context.CurriculumEventTemplates.Include(c => c.CurriculumSection).ThenInclude(c=>c.Curriculum)
-                .Include(c => c.CurriculumEventType).Where(c=>c.CurriculumSection.Curriculum.Program == program).OrderBy(c=> c.Date).Select(
+            return Ok(_context.CohortEventTemplates.Include(c=>c.CurriculumEvent.CurriculumSection.Curriculum)
+                .Where(c=>c.CurriculumEvent.CurriculumSection.Curriculum.Program == program).OrderBy(c=> c.Date).Select(
                 c=> new
                 {
                     Id = c.Id,
@@ -60,7 +82,8 @@ namespace CurriculumTemplateDemo.Controllers
         [HttpGet("getStudentEventsByCohort/{cohort}")]
         public ActionResult<dynamic> GetStudentEventsByCohort(string cohort)
         {
-            return Ok(_context.StudentEvents.Where(c => c.Cohort == cohort).Include(c => c.CurriculumEventTemplate).ToList());
+            return Ok();
+            //return Ok(_context.StudentEvents.Where(c => c.Cohort == cohort).Include(c => c.CurriculumEventTemplate).ThenInclude(c=>c.CurriculumEventType).ToList());
         }
     }
 }

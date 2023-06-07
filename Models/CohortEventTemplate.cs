@@ -2,15 +2,15 @@
 
 namespace CurriculumTemplateDemo.Models
 {
-    public class CurriculumEventTemplate
+    public class CohortEventTemplate
     {
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
         public string? Description { get; set; }
-        public virtual CurriculumSection CurriculumSection { get; set; }
-        public virtual CurriculumEventType CurriculumEventType { get; set; }
+        public String Cohort { get; set; }
+        public virtual CurriculumEvent CurriculumEvent { get; set; }
         public virtual ICollection<StudentEvent> StudentEvents { get; set; }
     }
 }
