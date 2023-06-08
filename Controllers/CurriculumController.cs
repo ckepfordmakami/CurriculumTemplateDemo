@@ -39,14 +39,6 @@ namespace CurriculumTemplateDemo.Controllers
         [HttpGet("getCurriculumModules")]
         public ActionResult<dynamic> GetCurriculumModules()
         {
-            /*return Ok(_context.CurriculumsModules.Select(c => new
-            {
-                Id = c.Id,
-                Name = c.Name,
-                Required = c.required,
-                Curriculum = c.Curriculum,
-            }));*/
-
             var list = _context.CurriculumsModules.Include(c=>c.Curriculum).ToList();
             
             return Ok(list);
@@ -82,8 +74,7 @@ namespace CurriculumTemplateDemo.Controllers
         [HttpGet("getStudentEventsByCohort/{cohort}")]
         public ActionResult<dynamic> GetStudentEventsByCohort(string cohort)
         {
-            return Ok();
-            //return Ok(_context.StudentEvents.Where(c => c.Cohort == cohort).Include(c => c.CurriculumEventTemplate).ThenInclude(c=>c.CurriculumEventType).ToList());
+            return Ok(_context.StudentEvents.Where(c => c.Cohort == cohort).Include(c => c.CurriculumEventTemplate.CurriculumEvent.CurriculumEventType).ToList());
         }
     }
 }
